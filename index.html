@@ -1,287 +1,475 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Vendor Access Playbook — Own the Split. Unlock Approvals.</title>
-  <meta name="description" content="$497 playbook for sales pros and agents to control vendor access, keep revenue splits, and move clients to approval faster — with expedited options."/>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <style>
-    :root{--ink:#0b0f19;--muted:#94a3b8;--ring:#22c55e;--sky:#38bdf8;}
-    html{scroll-behavior:smooth}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial}
-    .glass{background:rgba(255,255,255,.06);backdrop-filter:blur(10px)}
-    .soft{box-shadow:0 10px 30px rgba(2,6,23,.35)}
-    .grid-c{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-  </style>
-</head>
-<body class="bg-[#0b0f19] text-white">
-  <!-- Header -->
-  <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0b0f19]/70 backdrop-blur">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#" class="font-extrabold tracking-tight">Vendor Access Playbook</a>
-      <nav class="hidden md:flex gap-6 text-sm">
-        <a href="#why" class="hover:text-sky-300">Why this</a>
-        <a href="#earn" class="hover:text-sky-300">Earnings</a>
-        <a href="#expect" class="hover:text-sky-300">Client outcomes</a>
-        <a href="#expedited" class="hover:text-sky-300">Expedited</a>
-        <a href="#faq" class="hover:text-sky-300">FAQ</a>
-      </nav>
-      <a href="#checkout" class="inline-flex items-center rounded-xl bg-white text-[#0b0f19] px-4 py-2 font-semibold">Get Access — $497</a>
-    </div>
-  </header>
+import React, { useMemo, useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { DollarSign, Clock, CheckCircle2, ChevronRight, Shield, Sparkles, TrendingUp, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-  <!-- Hero -->
-  <section class="relative">
-    <div class="max-w-6xl mx-auto px-4 pt-14 pb-10 grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <p class="inline-flex items-center gap-2 text-sm text-white/80 border border-white/15 rounded-full px-3 py-1">
-          <span class="h-2 w-2 bg-emerald-400 rounded-full"></span> For closers who need approvals
-        </p>
-        <h1 class="mt-5 text-4xl md:text-5xl font-extrabold leading-tight">
-          Own the split. <span class="text-emerald-400">Unlock approvals.</span><br/>No middleman tax.
-        </h1>
-        <p class="mt-4 text-white/80 max-w-xl">
-          A one-time <strong>$497</strong> playbook giving you direct vendor access, revenue control, and client-ready scripts so deals stop stalling for credit issues.
-        </p>
-        <div class="mt-7 flex flex-col sm:flex-row gap-3">
-          <a href="#checkout" class="rounded-xl bg-emerald-500 hover:bg-emerald-400 text-[#0b0f19] font-semibold px-6 py-3">Get Vendor Access — $497</a>
-          <a href="#earn" class="rounded-xl border border-white/15 px-6 py-3 font-semibold hover:bg-white/5">See earning scenarios</a>
-        </div>
-      </div>
-      <div class="glass soft rounded-3xl border border-white/10 p-6">
-        <div class="grid grid-cols-2 gap-3">
-          <div class="rounded-2xl bg-white/5 p-4">
-            <p class="text-xs text-white/70">Built for</p>
-            <p class="text-xl font-bold">Auto • Real Estate • Funding</p>
-          </div>
-          <div class="rounded-2xl bg-white/5 p-4">
-            <p class="text-xs text-white/70">Model</p>
-            <p class="text-xl font-bold">Affiliate / Rev-Share</p>
-          </div>
-          <div class="rounded-2xl bg-white/5 p-4">
-            <p class="text-xs text-white/70">Control</p>
-            <p class="text-xl font-bold">Your pipeline, your split</p>
-          </div>
-          <div class="rounded-2xl bg-white/5 p-4">
-            <p class="text-xs text-white/70">Speed</p>
-            <p class="text-xl font-bold">Expedited options*</p>
-          </div>
-        </div>
-        <p class="mt-3 text-[12px] text-white/60">*Eligibility depends on file complexity and responsiveness.</p>
-      </div>
-    </div>
-  </section>
+// --- Helper Components ---
+const Section = ({ id, children, className = "" }) => (
+  <section id={id} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${className}`}>{children}</section>
+);
 
-  <!-- Why this vs middleman -->
-  <section id="why" class="max-w-6xl mx-auto px-4 py-14">
-    <h2 class="text-3xl md:text-4xl font-extrabold">Why this beats “middleman” routes</h2>
-    <p class="mt-2 text-white/80 max-w-3xl">Stop passing clients to generic links that dilute your revenue. This playbook puts <em>you</em> in the driver’s seat.</p>
-    <div class="mt-8 grid md:grid-cols-2 gap-6">
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h3 class="font-semibold">Old Way: Affiliate Shuffle</h3>
-        <ul class="mt-3 space-y-2 text-sm text-white/80 list-disc pl-5">
-          <li>Client gets vendor; <span class="text-white">you</span> get crumbs</li>
-          <li>Little control over updates or pacing</li>
-          <li>Inconsistent attribution = missed $$</li>
-        </ul>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h3 class="font-semibold">New Way: Controlled Access</h3>
-        <ul class="mt-3 space-y-2 text-sm text-white/80 list-disc pl-5">
-          <li>Direct access + tracking links you control</li>
-          <li>Expectation scripts = fewer headaches</li>
-          <li>Replicable intake → predictable splits</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+const Badge = ({ children }) => (
+  <span className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold tracking-wide">{children}</span>
+);
 
-  <!-- Earnings focus -->
-  <section id="earn" class="max-w-6xl mx-auto px-4 py-14">
-    <div class="rounded-3xl border border-white/10 bg-white/5 p-8">
-      <h2 class="text-3xl md:text-4xl font-extrabold">Your earnings potential</h2>
-      <p class="mt-2 text-white/80">Illustrative scenarios based on typical vendor affiliate/rev-share structures you’ll lock in via this playbook.</p>
-      <div class="mt-6 grid-c">
-        <div class="rounded-2xl bg-[#0f1425] p-6 border border-white/10">
-          <p class="text-sm text-white/70">Starter</p>
-          <p class="text-2xl font-extrabold mt-1">10 routed clients / mo</p>
-          <p class="text-sm text-white/80 mt-2">Low-touch side income while you focus on closing your core deals.</p>
-        </div>
-        <div class="rounded-2xl bg-[#0f1425] p-6 border border-white/10">
-          <p class="text-sm text-white/70">Growing</p>
-          <p class="text-2xl font-extrabold mt-1">25 routed clients / mo</p>
-          <p class="text-sm text-white/80 mt-2">Multiple verticals (auto, RE, funding) feeding one split stream.</p>
-        </div>
-        <div class="rounded-2xl bg-[#0f1425] p-6 border border-white/10">
-          <p class="text-sm text-white/70">Scale</p>
-          <p class="text-2xl font-extrabold mt-1">50+ routed clients / mo</p>
-          <p class="text-sm text-white/80 mt-2">A serious profit center with zero fulfillment team on payroll.</p>
-        </div>
+const Feature = ({ icon: Icon, title, children }) => (
+  <div className="group">
+    <div className="flex items-center gap-3">
+      <div className="rounded-2xl p-3 border shadow-sm">
+        <Icon className="h-5 w-5" />
       </div>
-      <p class="mt-4 text-[12px] text-white/60">Numbers are examples; exact splits depend on the vendor program you access through the playbook.</p>
+      <h4 className="font-semibold text-base">{title}</h4>
     </div>
-  </section>
+    <p className="mt-2 text-sm opacity-80 leading-relaxed">{children}</p>
+  </div>
+);
 
-  <!-- What clients can expect / approvals -->
-  <section id="expect" class="max-w-6xl mx-auto px-4 py-14">
-    <h2 class="text-3xl md:text-4xl font-extrabold">What your clients can expect</h2>
-    <div class="mt-6 grid md:grid-cols-2 gap-6">
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h3 class="font-semibold">Typical Journey</h3>
-        <ol class="mt-3 space-y-3 text-sm text-white/80">
-          <li><span class="text-white font-semibold">Week 0–1:</span> Intake + credit monitoring + file mapping</li>
-          <li><span class="text-white font-semibold">Week 2–4:</span> Dispute strategy execution begins; first movement</li>
-          <li><span class="text-white font-semibold">Month 2–3:</span> Follow-ups, escalations, targeted clean-up; potential score shifts</li>
-        </ol>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h3 class="font-semibold">Approval-oriented expectations</h3>
-        <ul class="mt-3 space-y-2 text-sm text-white/80 list-disc pl-5">
-          <li><strong>Auto:</strong> Moving borderline files into bankable tiers for better rates/down.</li>
-          <li><strong>Real Estate:</strong> Nudging FICO models toward lender minimums before lock deadlines.</li>
-          <li><strong>Funding:</strong> Positioning for higher approvals/limits with cleaner utilization profiles.</li>
-        </ul>
-        <p class="mt-3 text-[12px] text-white/60">No guarantees; approvals depend on lender criteria, income, DTI, and overall file health.</p>
-      </div>
-    </div>
-  </section>
+const Stat = ({ value, label }) => (
+  <div className="text-center">
+    <div className="text-3xl md:text-4xl font-extrabold tracking-tight">{value}</div>
+    <div className="mt-1 text-xs md:text-sm opacity-70">{label}</div>
+  </div>
+);
 
-  <!-- Expedited -->
-  <section id="expedited" class="max-w-6xl mx-auto px-4 py-14">
-    <div class="rounded-3xl border border-white/10 bg-white/5 p-8">
-      <h2 class="text-3xl md:text-4xl font-extrabold">Expedited options (when eligible)</h2>
-      <div class="mt-6 grid-c">
-        <div class="rounded-2xl bg-[#0f1425] p-6 border border-white/10">
-          <p class="text-sm text-white/70">Priority handling</p>
-          <p class="text-white/80 text-sm mt-2">Faster touchpoints and escalation paths to keep momentum on time-sensitive files.</p>
-        </div>
-        <div class="rounded-2xl bg-[#0f1425] p-6 border border-white/10">
-          <p class="text-sm text-white/70">Tighter feedback loops</p>
-          <p class="text-white/80 text-sm mt-2">Client comms designed for speed and documentation completeness.</p>
-        </div>
-        <div class="rounded-2xl bg-[#0f1425] p-6 border border-white/10">
-          <p class="text-sm text-white/70">Outcome-oriented pacing</p>
-          <p class="text-white/80 text-sm mt-2">Road-mapping milestones toward lender thresholds where feasible.</p>
-        </div>
-      </div>
-      <p class="mt-4 text-[12px] text-white/60">Availability varies by bureaus, disputes in flight, and client responsiveness.</p>
-    </div>
-  </section>
+const ListItem = ({ children }) => (
+  <div className="flex items-start gap-3">
+    <CheckCircle2 className="mt-0.5 h-5 w-5" />
+    <p className="text-sm leading-relaxed opacity-90">{children}</p>
+  </div>
+);
 
-  <!-- How it works -->
-  <section class="max-w-6xl mx-auto px-4 py-14">
-    <h2 class="text-3xl md:text-4xl font-extrabold">How it works</h2>
-    <div class="mt-8 grid-c">
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <span class="text-4xl font-extrabold text-emerald-400">1</span>
-        <h3 class="mt-1 font-semibold">Buy the playbook</h3>
-        <p class="text-sm text-white/80 mt-2">$497 one-time. Instant access to vendor details, intake flow, and scripts.</p>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <span class="text-4xl font-extrabold text-emerald-400">2</span>
-        <h3 class="mt-1 font-semibold">Plug it in</h3>
-        <p class="text-sm text-white/80 mt-2">Use the templates and tracking so attribution (and your split) is locked.</p>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <span class="text-4xl font-extrabold text-emerald-400">3</span>
-        <h3 class="mt-1 font-semibold">Route & collect</h3>
-        <p class="text-sm text-white/80 mt-2">Clients get service; you keep your revenue share without babysitting fulfillment.</p>
-      </div>
-    </div>
-  </section>
+// --- Pure calc used by UI and tests ---
+export function calcMonthly(
+  referrals: number,
+  closeRate: number,
+  servicePrice: number,
+  affiliateSplit: number,
+  expeditedUptake: number,
+  expeditedPremium: number
+): number {
+  const converted = referrals * closeRate;
+  const avgTicket = servicePrice + expeditedUptake * expeditedPremium;
+  const payoutPerClient = avgTicket * affiliateSplit;
+  return Math.round(converted * payoutPerClient);
+}
 
-  <!-- Social proof placeholders -->
-  <section class="max-w-6xl mx-auto px-4 py-14">
-    <h2 class="text-3xl md:text-4xl font-extrabold">Agents are monetizing the “no”</h2>
-    <div class="mt-6 grid-c">
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6"><p class="text-sm text-white/80">“Turned declines into a new income stream. My deals don’t die at credit anymore.” — Auto Broker</p></div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6"><p class="text-sm text-white/80">“Expectations + expedited saved a contract before rate lock. Worth it.” — Realtor</p></div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6"><p class="text-sm text-white/80">“Attribution is tight. Splits hit like clockwork.” — Funding Consultant</p></div>
-    </div>
-  </section>
+// --- Dev-only smoke tests ---
+if (typeof window !== "undefined" && process.env.NODE_ENV !== "production") {
+  try {
+    const t1 = calcMonthly(10, 0.7, 800, 0.5, 0.3, 200);
+    console.assert(Number.isFinite(t1) && t1 > 0, "calcMonthly should return a positive finite number");
+    const t2 = calcMonthly(0, 1, 1000, 1, 1, 100);
+    console.assert(t2 === 0, `zero referrals should yield 0, got ${t2}`);
+    const t3 = calcMonthly(1, 1, 100, 0.5, 0, 0);
+    console.assert(t3 === 50, `expected 50 for simple case, got ${t3}`);
+    const t4 = calcMonthly(1, 1, 297, 0.35, 0, 0);
+    console.assert(t4 === 104, `rounding check (297 * 0.35) should be 104, got ${t4}`);
+    const t5 = calcMonthly(1, 1, 100, 1, 0.5, 200);
+    console.assert(t5 === 300, `expedited effect should yield 300, got ${t5}`);
+    const t6 = calcMonthly(30, 1, 400, 0.5, 0.75, 300);
+    console.assert(t6 === 9375, `max potential sanity: expected 9375, got ${t6}`);
+  } catch (e) {
+    console.warn("Dev test error:", e);
+  }
+}
 
-  <!-- Checkout -->
-  <section id="checkout" class="max-w-6xl mx-auto px-4 py-14">
-    <div class="rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10">
-      <div class="grid md:grid-cols-2 gap-8 items-start">
-        <div>
-          <h2 class="text-3xl md:text-4xl font-extrabold">Get Access — $497</h2>
-          <p class="mt-2 text-white/80">One-time payment. Lifetime access to updates to scripts/templates.</p>
-          <ul class="mt-5 text-sm text-white/80 space-y-2">
-            <li>• Direct vendor access + intake flow you control</li>
-            <li>• DM/Email/Phone scripts for expectation-setting</li>
-            <li>• Tracker sheet + client-facing explainer assets</li>
-            <li>• Compliance guardrails (no overpromising)</li>
-            <li>• Expedited pathways overview (where applicable)</li>
-          </ul>
-          <p class="mt-3 text-[12px] text-white/60">Clients pay the vendor directly. You keep your affiliate/rev split on qualified files.</p>
-        </div>
-        <div class="glass rounded-2xl p-6 border border-white/10">
-          <form class="space-y-4" onsubmit="goCheckout(event)">
-            <div>
-              <label class="text-xs text-white/70">Name</label>
-              <input class="mt-1 w-full rounded-xl bg-[#0f1425] border border-white/10 px-4 py-3 outline-none focus:border-emerald-400" required/>
+// --- Main Component ---
+export default function VendorAccessLanding() {
+  const STAN_URL = "https://stan.store/DepositRequired/DepositRequired_store/page/3651223";
+
+  // Calculator state (defaults per latest spec)
+  const [referrals, setReferrals] = useState(10);
+  const [closeRate, setCloseRate] = useState(1.0); // 100%
+  const [servicePrice, setServicePrice] = useState(297);
+  const [affiliateSplit, setAffiliateSplit] = useState(0.35); // 35%
+  const [expeditedUptake, setExpeditedUptake] = useState(0.5); // 50%
+  const [expeditedPremium, setExpeditedPremium] = useState(200);
+
+  const monthlyRevenue = useMemo(
+    () => calcMonthly(referrals, closeRate, servicePrice, affiliateSplit, expeditedUptake, expeditedPremium),
+    [referrals, closeRate, servicePrice, affiliateSplit, expeditedUptake, expeditedPremium]
+  );
+  const annualRevenue = useMemo(() => monthlyRevenue * 12, [monthlyRevenue]);
+
+  // Sticky CTA visibility on scroll
+  const [showStickyTop, setShowStickyTop] = useState(false);
+  const [showStickyBottom, setShowStickyBottom] = useState(false);
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY || 0;
+      // appear after passing the hero (~200px)
+      setShowStickyTop(y > 240);
+      setShowStickyBottom(y > 480);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 text-foreground">
+      {/* Hero */}
+      <div className="relative overflow-hidden border-b">
+        <Section className="py-16 md:py-24">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <div className="flex flex-col items-center text-center">
+              <Badge>
+                <Sparkles className="h-3.5 w-3.5 mr-1" /> Built for Sales Pros & Agents
+              </Badge>
+              <h1 className="mt-5 text-4xl md:text-6xl font-black tracking-tight">
+                The <span className="underline decoration-wavy decoration-2 underline-offset-4">Vendor Access</span> Playbook
+              </h1>
+              <p className="mt-4 max-w-2xl text-sm md:text-base opacity-80">
+                Unlock lifetime vendor access for $497 and turn client credit challenges into a revenue stream. Provide a proven solution, control the process, and profit from every referral.
+              </p>
+
+              <div className="mt-8 flex flex-col md:flex-row items-center gap-3">
+                <a href={STAN_URL} target="_blank" rel="noreferrer">
+                  <Button size="lg" className="rounded-2xl px-6 py-6 text-base font-semibold">
+                    Get Instant Access – $497
+                  </Button>
+                </a>
+              </div>
+
+              <div className="mt-6 grid grid-cols-3 gap-6">
+                <Stat value="<10 min" label="Onboarding Time" />
+                <Stat value="Expedited" label="Processing Available" />
+                <Stat value="60–90 days" label="Typical Client Results" />
+              </div>
             </div>
-            <div>
-              <label class="text-xs text-white/70">Email</label>
-              <input type="email" class="mt-1 w-full rounded-xl bg-[#0f1425] border border-white/10 px-4 py-3 outline-none focus:border-emerald-400" required/>
+          </motion.div>
+        </Section>
+      </div>
+
+      {/* Why It Matters */}
+      <Section id="why" className="py-16">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Why Vendor Access Matters</h2>
+            <p className="mt-3 text-sm opacity-80">
+              Instead of watching deals fall apart from bad credit, flip the problem into profit. Direct vendor access gives you the power to earn consistent revenue while guiding clients toward faster approvals.
+            </p>
+            <div className="mt-6 grid gap-6">
+              <Feature icon={DollarSign} title="Recurring Revenue Stream">
+                Every referral creates income. Typical splits are 40–50%, meaning $300–$400 earned per client.
+              </Feature>
+              <Feature icon={Clock} title="Expedited Results">
+                Clients can see results in as little as 30 days with expedited processing — keeping your pipeline moving.
+              </Feature>
+              <Feature icon={Shield} title="Client Confidence">
+                Vendor handles collections, charge-offs, lates, inquiries, even BK items — proven track record you can rely on.
+              </Feature>
             </div>
-            <button type="submit" class="w-full rounded-xl bg-emerald-500 hover:bg-emerald-400 text-[#0b0f19] font-semibold py-3">Proceed to Checkout</button>
-            <p class="text-[12px] text-white/60">Access link sent immediately after checkout.</p>
-          </form>
-          <script>
-            function goCheckout(e){
-              e.preventDefault();
-              // Replace with your real checkout link (Whop/Stripe/Stan)
-              window.location.href = "https://example.com/checkout-vendor-access";
-            }
-          </script>
+          </div>
+
+          <Card className="rounded-3xl">
+            <CardHeader>
+              <CardTitle className="text-lg">How It Works</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3 text-sm opacity-80 list-disc list-inside">
+                <li>Pay $497 once to unlock direct vendor access.</li>
+                <li>Offer your clients a proven path to credit improvement.</li>
+                <li>Earn affiliate or revenue splits on every client served.</li>
+                <li>Grow your income while helping clients close faster.</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+      </Section>
+
+      {/* Meet the Vendor */}
+      <Section id="vendor" className="py-16">
+        <div className="grid lg:grid-cols-2 gap-10">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Meet Your Plug</h2>
+            <p className="mt-3 text-sm opacity-80">
+              This vendor has produced consistent results for clients nationwide. With clear onboarding, expedited channels, and transparent updates, you’ll deliver both revenue for yourself and confidence for your clients.
+            </p>
+            <div className="mt-6 space-y-4">
+              <ListItem>Typical client timeline: 60–90 days, expedited as quick as 30.</ListItem>
+              <ListItem>Removes: collections, charge-offs, lates, inquiries, BK items.</ListItem>
+              <ListItem>Communication: direct ticketing and SMS updates for clients.</ListItem>
+            </div>
+
+            <div className="mt-8 flex items-center gap-3">
+              <a href={STAN_URL} target="_blank" rel="noreferrer">
+                <Button size="lg" className="rounded-2xl px-6 py-6 text-base font-semibold">
+                  Access the Vendor Now
+                </Button>
+              </a>
+              <Button variant="outline" size="lg" className="rounded-2xl px-6 py-6">
+                View Onboarding Steps
+              </Button>
+            </div>
+          </div>
+
+          <Card className="rounded-3xl">
+            <CardHeader>
+              <CardTitle className="text-lg">Onboarding Snapshot</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <ListItem>Pay $497 one time for access.</ListItem>
+              <ListItem>Introduce your clients confidently to the vendor.</ListItem>
+              <ListItem>Earn your affiliate split on each referral.</ListItem>
+              <ListItem>Track revenue and client milestones easily.</ListItem>
+            </CardContent>
+          </Card>
+        </div>
+      </Section>
+
+      {/* Monetize the Plug */}
+      <Section id="monetize" className="py-16">
+        <div className="grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Flip Access Into Income</h2>
+            <p className="mt-3 text-sm opacity-80">Position yourself as the solution: clients fix their credit, you earn recurring payouts. Everybody wins.</p>
+            <div className="mt-6 space-y-4">
+              <ListItem>Average affiliate payout: $300–$400 per client.</ListItem>
+              <ListItem>Faster client approvals = more closed deals for you.</ListItem>
+              <ListItem>Upsell audits, monitoring, or coaching alongside vendor results.</ListItem>
+            </div>
+          </div>
+
+          <Card className="rounded-3xl">
+            <CardHeader>
+              <CardTitle className="text-lg">Revenue Example</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="rounded-2xl border p-5">
+                <div className="flex items-center gap-2 text-sm">
+                  <TrendingUp className="h-4 w-4" /> Example Math
+                </div>
+                <div className="mt-3 grid grid-cols-2 gap-4 text-sm">
+                  <div className="opacity-70">Client Service Price</div>
+                  <div className="font-semibold">$297</div>
+                  <div className="opacity-70">Your Affiliate Split</div>
+                  <div className="font-semibold">35% = $104</div>
+                  <div className="opacity-70">Your Cost for Access</div>
+                  <div className="font-semibold">$497 one-time</div>
+                  <div className="opacity-70">Break-even on Low End</div>
+                  <div className="font-semibold">≈ 5 Clients</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </Section>
+
+      {/* Client Expectations */}
+      <Section id="expectations" className="py-16">
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-center">What Your Clients Can Expect</h2>
+        <p className="mt-3 text-sm opacity-80 text-center max-w-2xl mx-auto">
+          Show clients real incentives: improved scores, access to better financing, and approvals that change their lives. This is the ultimate value-add you can promote once you own the playbook.
+        </p>
+        <div className="mt-8 grid md:grid-cols-3 gap-6">
+          {[
+            { title: "Score Boosts", body: "Many clients experience 80–150+ point increases within 60–90 days." },
+            { title: "Loan Approvals", body: "Unlock access to auto loans, mortgages, and credit cards once blocked by bad credit." },
+            { title: "Faster Funding", body: "Expedited processing clears urgent files in as little as 30 days, helping clients move quickly." },
+          ].map((t, i) => (
+            <Card key={i} className="rounded-3xl">
+              <CardHeader>
+                <CardTitle className="text-base flex items-center gap-2"><Star className="h-4 w-4 text-yellow-500" /> {t.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm opacity-80">{t.body}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* Results */}
+      <Section id="results" className="py-16">
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-center">Real-World Wins</h2>
+        <p className="mt-3 text-sm opacity-80 text-center max-w-2xl mx-auto">
+          Agents are earning while clients are winning. Expedited clears, higher scores, and affiliate payouts are happening every week.
+        </p>
+        <div className="mt-8 grid md:grid-cols-3 gap-6">
+          {[
+            { title: "540 → 690 in 60 days", body: "Clients report boosted scores and faster approvals." },
+            { title: "$400 earned per client", body: "Affiliate split deposited within 30 days." },
+            { title: "Expedited clears in 30 days", body: "Urgent clients funded quickly with priority processing." },
+          ].map((t, i) => (
+            <Card key={i} className="rounded-3xl">
+              <CardHeader>
+                <CardTitle className="text-base">{t.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm opacity-80">{t.body}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* Revenue Calculator */}
+      <Section id="calculator" className="py-16">
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-center">Estimate Your Monthly Revenue</h2>
+        <p className="mt-3 text-sm opacity-80 text-center max-w-3xl mx-auto">
+          Plug in your numbers to see what this playbook can generate. Defaults are conservative and fully editable. These estimates are for illustration only.
+        </p>
+
+        <div className="mt-8 grid lg:grid-cols-2 gap-6 items-start">
+          {/* Inputs */}
+          <Card className="rounded-3xl">
+            <CardHeader>
+              <CardTitle className="text-lg">Your Assumptions</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs font-medium opacity-70">Referrals per month</label>
+                  <input type="number" min={0} value={referrals} onChange={(e) => setReferrals(parseInt(e.target.value || "0"))} className="mt-1 w-full rounded-xl border px-3 py-2" />
+                </div>
+                <div>
+                  <label className="text-xs font-medium opacity-70">Close rate (%)</label>
+                  <input type="number" min={0} max={100} value={Math.round(closeRate * 100)} onChange={(e) => setCloseRate(Math.min(1, Math.max(0, (parseInt(e.target.value || "0") / 100))))} className="mt-1 w-full rounded-xl border px-3 py-2" />
+                </div>
+                <div>
+                  <label className="text-xs font-medium opacity-70">Service price ($)</label>
+                  <input type="number" min={0} value={servicePrice} onChange={(e) => setServicePrice(parseInt(e.target.value || "0"))} className="mt-1 w-full rounded-xl border px-3 py-2" />
+                </div>
+                <div>
+                  <label className="text-xs font-medium opacity-70">Affiliate split (%)</label>
+                  <input type="number" min={0} max={100} value={Math.round(affiliateSplit * 100)} onChange={(e) => setAffiliateSplit(Math.min(1, Math.max(0, (parseInt(e.target.value || "0") / 100))))} className="mt-1 w-full rounded-xl border px-3 py-2" />
+                </div>
+                <div>
+                  <label className="text-xs font-medium opacity-70">% choosing expedited</label>
+                  <input type="number" min={0} max={100} value={Math.round(expeditedUptake * 100)} onChange={(e) => setExpeditedUptake(Math.min(1, Math.max(0, (parseInt(e.target.value || "0") / 100))))} className="mt-1 w-full rounded-xl border px-3 py-2" />
+                </div>
+                <div>
+                  <label className="text-xs font-medium opacity-70">Expedited premium ($)</label>
+                  <input type="number" min={0} value={expeditedPremium} onChange={(e) => setExpeditedPremium(parseInt(e.target.value || "0"))} className="mt-1 w-full rounded-xl border px-3 py-2" />
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-2 pt-2">
+                <Button variant="outline" onClick={() => { setReferrals(5); setCloseRate(1.0); setServicePrice(297); setAffiliateSplit(0.35); setExpeditedUptake(0.5); setExpeditedPremium(200); }}>Conservative</Button>
+                <Button variant="outline" onClick={() => { setReferrals(10); setCloseRate(1.0); setServicePrice(297); setAffiliateSplit(0.35); setExpeditedUptake(0.5); setExpeditedPremium(200); }}>Typical</Button>
+                <Button variant="outline" onClick={() => { setReferrals(20); setCloseRate(1.0); setServicePrice(297); setAffiliateSplit(0.35); setExpeditedUptake(0.5); setExpeditedPremium(200); }}>Aggressive</Button>
+                <Button variant="outline" onClick={() => { setReferrals(30); setCloseRate(1.0); setServicePrice(400); setAffiliateSplit(0.5); setExpeditedUptake(0.75); setExpeditedPremium(300); }}>Max Potential</Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Output */}
+          <Card className="rounded-3xl">
+            <CardHeader>
+              <CardTitle className="text-lg">Projected Earnings</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
+                <Stat value={`$${monthlyRevenue.toLocaleString()}`} label="Monthly revenue" />
+                <Stat value={`$${annualRevenue.toLocaleString()}`} label="Annualized revenue" />
+              </div>
+              <div className="rounded-2xl border p-4 text-sm opacity-80">
+                <p><strong>Formula:</strong> referrals × close rate × (service price + expedited uptake × expedited premium) × affiliate %</p>
+                <p className="mt-2">These are illustrative estimates only. Actual payouts and timelines vary by client and vendor policies.</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </Section>
+
+      {/* Scarcity / Last Call */}
+      <Section id="lastcall" className="py-16">
+        <div className="rounded-3xl border p-8 md:p-12 text-center">
+          <div className="flex justify-center">
+            <Badge>
+              <Clock className="h-3.5 w-3.5 mr-1" /> Limited Insider Access
+            </Badge>
+          </div>
+          <h3 className="mt-4 text-2xl md:text-3xl font-bold tracking-tight">Lock In Vendor Access – $497</h3>
+          <p className="mt-2 text-sm opacity-80 max-w-2xl mx-auto">
+            One-time $497 unlocks lifetime vendor access. Start generating affiliate revenue while your clients get proven results.
+          </p>
+          <div className="mt-6 flex flex-col md:flex-row gap-3 justify-center">
+            <a href={STAN_URL} target="_blank" rel="noreferrer">
+              <Button size="lg" className="rounded-2xl px-6 py-6 text-base font-semibold">
+                Get Instant Access – $497 <ChevronRight className="ml-2 h-4 w-4" />
+              </Button>
+            </a>
+          </div>
+        </div>
+      </Section>
+
+      {/* Upsells */}
+      <Section id="next" className="py-16">
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-center">Next Steps: Build & Scale</h2>
+        <p className="mt-3 text-sm opacity-80 text-center max-w-2xl mx-auto">
+          Pair vendor access with these compounding plays to grow limits, approvals, and your revenue streams.
+        </p>
+        <div className="mt-8 grid md:grid-cols-3 gap-6">
+          {[
+            { title: "Credit Builder Blueprint", body: "Installment builders, utilization strategy, 700+ roadmap." },
+            { title: "Funding Stacking Playbook", body: "Sequence apps for $250K+ without tripping fraud flags." },
+            { title: "Selling Cars on Instagram", body: "Turn DMs into deals with scripts, hooks, and systems." },
+          ].map((t, i) => (
+            <Card key={i} className="rounded-3xl hover:shadow-md transition">
+              <CardHeader>
+                <CardTitle className="text-base">{t.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm opacity-80">{t.body}</p>
+                <a href={STAN_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-sm font-medium mt-2">Learn more <ChevronRight className="h-4 w-4" /></a>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* Footer */}
+      <footer className="border-t">
+        <Section className="py-10 text-center">
+          <p className="text-xs opacity-60">
+            © {new Date().getFullYear()} Deposit Required Inc. Educational content. No guarantees of approval or specific outcomes.
+          </p>
+        </Section>
+      </footer>
+
+      {/* Sticky Top CTA (shows after scrolling past hero) */}
+      <div
+        className={`fixed top-0 inset-x-0 z-50 transition-transform duration-300 ${showStickyTop ? 'translate-y-0' : '-translate-y-full'}`}
+        aria-hidden={!showStickyTop}
+      >
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mt-2 mb-2 rounded-2xl border bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
+            <div className="flex items-center justify-between gap-3 px-4 py-3">
+              <div className="flex items-center gap-3 text-sm">
+                <Sparkles className="h-4 w-4" />
+                <span className="font-medium">Vendor Access Playbook</span>
+                <span className="opacity-70 hidden sm:inline">Lifetime access · $497</span>
+              </div>
+              <a href={STAN_URL} target="_blank" rel="noreferrer">
+                <Button size="sm" className="rounded-xl">Get Access</Button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Sticky Bottom CTA (mobile-first, shows further down the page) */}
+      <div
+        className={`fixed bottom-0 inset-x-0 z-50 md:hidden transition-transform duration-300 ${showStickyBottom ? 'translate-y-0' : 'translate-y-full'}`}
+        aria-hidden={!showStickyBottom}
+      >
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-3">
+          <div className="rounded-2xl border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/70 shadow-lg">
+            <div className="flex items-center justify-between gap-3 px-4 py-3">
+              <div className="text-sm">
+                <div className="font-semibold leading-tight">Lifetime Vendor Access</div>
+                <div className="opacity-70">One-time $497</div>
+              </div>
+              <a href={STAN_URL} target="_blank" rel="noreferrer" className="shrink-0">
+                <Button size="sm" className="rounded-xl">Buy Now</Button>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="max-w-6xl mx-auto px-4 py-14">
-    <h2 class="text-3xl md:text-4xl font-extrabold">FAQ</h2>
-    <div class="mt-6 grid md:grid-cols-2 gap-6">
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h3 class="font-semibold">Is this the same as being an affiliate?</h3>
-        <p class="text-sm text-white/80 mt-2">You’re still earning via affiliate/rev-share—difference is control: proper routing, attribution, and expectation scripts that protect your split.</p>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h3 class="font-semibold">How fast can clients see movement?</h3>
-        <p class="text-sm text-white/80 mt-2">Many files show movement in 6–12 weeks; expedited may accelerate pace on eligible files. No guarantees—depends on the file and responsiveness.</p>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h3 class="font-semibold">Refunds?</h3>
-        <p class="text-sm text-white/80 mt-2">Digital product; all sales final. Implementation support included.</p>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h3 class="font-semibold">Can I white-label?</h3>
-        <p class="text-sm text-white/80 mt-2">You control front-end positioning. Vendor handles fulfillment behind the scenes.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="border-t border-white/10">
-    <div class="max-w-6xl mx-auto px-4 py-10 text-sm text-white/60">
-      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <p>© <span id="y"></span> Vendor Access Playbook.</p>
-        <div class="flex gap-5">
-          <a href="#checkout" class="hover:text-white">Get Access</a>
-          <a href="#" onclick="alert('Add your Terms URL')" class="hover:text-white">Terms</a>
-          <a href="#" onclick="alert('Add your Privacy URL')" class="hover:text-white">Privacy</a>
-        </div>
-      </div>
-      <p class="mt-3 text-[12px]">Disclaimer: No promises of specific score increases or approvals. Outcomes depend on third-party bureaus, lender criteria, and client responsiveness.</p>
-    </div>
-  </footer>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
-</body>
-</html>
+  );
+}
